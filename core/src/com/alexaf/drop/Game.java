@@ -45,8 +45,8 @@ public class Game extends ApplicationAdapter {
 		camera = new OrthographicCamera();
 
 		// Let's set a Screen size
-		ScreenHeight = 800;
-		ScreenWidth = 480;
+		ScreenHeight = 480;
+		ScreenWidth = 800;
 
 		camera.setToOrtho(false, ScreenWidth, ScreenHeight);
 
