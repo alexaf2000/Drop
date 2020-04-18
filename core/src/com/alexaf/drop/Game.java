@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -27,8 +28,8 @@ public class Game extends ApplicationAdapter {
 	Rectangle bucket;
 	Array<Rectangle> raindrops;
 	long lastDropTime;
-	int ScreenWidth;
-	int ScreenHeight;
+	int ScreenWidth, ScreenHeight, puntuation;
+	BitmapFont Marker;
 
 	@Override
 	public void create () {
@@ -39,6 +40,8 @@ public class Game extends ApplicationAdapter {
 		dropSound.add(Gdx.audio.newSound(Gdx.files.internal("drop_0.mp3")));
 		dropSound.add(Gdx.audio.newSound(Gdx.files.internal("drop_1.mp3")));
 		rainMusic = Gdx.audio.newMusic(Gdx.files.internal("rain.mp3"));
+		Marker = new BitmapFont();
+
 		rainMusic.play();
 		rainMusic.setLooping(true);
 		// Let's create the camera
@@ -131,7 +134,9 @@ public class Game extends ApplicationAdapter {
 			if(raindrop.y + 64 < 0){
 				iter.remove();
 			}
+			// If player well done
 			if(raindrop.overlaps(bucket)){
+				puntuation++;
 				// Let's play a random drop sound...
 				dropSound.random().play();
 				iter.remove();
@@ -142,6 +147,9 @@ public class Game extends ApplicationAdapter {
 		for (Rectangle raindrop : raindrops){
 			batch.draw(dropImage, raindrop.x, raindrop.y);
 		}
+
+		Marker.draw(batch,"Captured drops: "+puntuation,0, ScreenHeight);
+
 		batch.end();
 	}
 
