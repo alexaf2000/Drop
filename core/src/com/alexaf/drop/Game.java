@@ -19,6 +19,7 @@ public class Game extends com.badlogic.gdx.Game {
 
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("BrnDmge.ttf"));
 		FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+		parameter.size = 28;
 		font = generator.generateFont(parameter);
 
 
