@@ -35,7 +35,7 @@ public class MainGame implements Screen{
     public MainGame(Game gameProcess){
 
         this.gameProcess = gameProcess;
-        batch = new SpriteBatch();
+
         dropImage = new Texture("drop.png");
         bucketImage = new Texture("bucket.png");
         dropSound = new Array<Sound>();
@@ -97,13 +97,13 @@ public class MainGame implements Screen{
         camera.update();
 
         // Lets load the spriteBatch with the camera
-        batch.setProjectionMatrix(camera.combined);
+        gameProcess.batch.setProjectionMatrix(camera.combined);
 
         // Let's start the game
-        batch.begin();
+        gameProcess.batch.begin();
 
         // Draw the bucket in the correct position
-        batch.draw(bucketImage, bucket.x, bucket.y);
+        gameProcess.batch.draw(bucketImage, bucket.x, bucket.y);
 
         // While executing, if screen is touched...
         if(Gdx.input.isTouched()){
@@ -150,12 +150,12 @@ public class MainGame implements Screen{
 
         // Foreach existent raindrop will assign its image, and position
         for (Rectangle raindrop : raindrops){
-            batch.draw(dropImage, raindrop.x, raindrop.y);
+            gameProcess.batch.draw(dropImage, raindrop.x, raindrop.y);
         }
 
-        Marker.draw(batch,"Captured drops: "+puntuation,0, ScreenHeight);
+        Marker.draw(gameProcess.batch,"Captured drops: "+puntuation,0, ScreenHeight);
 
-        batch.end();
+        gameProcess.batch.end();
     }
 
     @Override
