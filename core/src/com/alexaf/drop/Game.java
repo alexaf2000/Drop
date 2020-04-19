@@ -19,7 +19,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 import java.util.Iterator;
 
 
-public class Game extends ApplicationAdapter {
+public class Game extends com.badlogic.gdx.Game {
 	SpriteBatch batch;
 	Texture dropImage, bucketImage;
 	Array<Sound> dropSound;
