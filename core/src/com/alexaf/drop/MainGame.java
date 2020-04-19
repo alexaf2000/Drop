@@ -29,7 +29,6 @@ public class MainGame implements Screen{
     Array<Rectangle> raindrops;
     long lastDropTime;
     int ScreenWidth, ScreenHeight, puntuation;
-    BitmapFont Marker;
     Game gameProcess;
 
     public MainGame(Game gameProcess){
@@ -42,7 +41,6 @@ public class MainGame implements Screen{
         dropSound.add(Gdx.audio.newSound(Gdx.files.internal("drop_0.mp3")));
         dropSound.add(Gdx.audio.newSound(Gdx.files.internal("drop_1.mp3")));
         rainMusic = Gdx.audio.newMusic(Gdx.files.internal("rain.mp3"));
-        Marker = new BitmapFont();
 
         rainMusic.play();
         rainMusic.setLooping(true);
@@ -153,7 +151,7 @@ public class MainGame implements Screen{
             gameProcess.batch.draw(dropImage, raindrop.x, raindrop.y);
         }
 
-        Marker.draw(gameProcess.batch,"Captured drops: "+puntuation,0, ScreenHeight);
+        gameProcess.font.draw(gameProcess.batch,"Captured drops: "+puntuation,0, ScreenHeight);
 
         gameProcess.batch.end();
     }
